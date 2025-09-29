@@ -19,10 +19,15 @@ void Shell::run() {
     
     std::cout << "\n";
     std::cout << "╔══════════════════════════════════════════════════════════════╗\n";
-    std::cout << "║                    SIMPLE OS SIMULATOR                       ║\n";
-    std::cout << "║                     Versión 1.0                              ║\n";
+    std::cout << "║                                                              ║\n";
+    std::cout << "║                      SIMPLE OS SIMULATOR                     ║\n";
+    std::cout << "║                                                              ║\n";
+    std::cout << "║                           Versión 1.0                        ║\n";
+    std::cout << "║                                                              ║\n";
     std::cout << "╚══════════════════════════════════════════════════════════════╝\n";
-    std::cout << "\nEscribe 'help' para ver los comandos disponibles.\n";
+    std::cout << "\n";
+    std::cout << "Escribe help para ver los comandos disponibles.\n";
+    std::cout << std::endl;
     
     // Iniciar el scheduler
     process_scheduler.start_scheduler();

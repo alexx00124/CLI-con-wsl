@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🔨 Compilando Simple OS Simulator..."
+echo "Compilando Simple OS Simulator..."
 
 # Limpiar archivos anteriores
 rm -f *.o os_sim
@@ -25,6 +25,6 @@ if [ $? -eq 0 ]; then
     echo "  ps       # Ver procesos"
     echo "  exit     # Salir"
 else
-    echo "❌ Error en la compilación"
+    echo "Error en la compilación"
     exit 1
 fi

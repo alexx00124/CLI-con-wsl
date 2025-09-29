@@ -9,8 +9,8 @@
 Shell* global_shell = nullptr;
 
 // Manejador de señales (Ctrl+C)
-void signal_handler(int signal) {
-    std::cout << "\n[SISTEMA] Señal recibida (" << signal << "). Cerrando sistema...\n";
+void signal_handler(int senal) {
+    std::cout << "\n[SISTEMA] Señal recibida (" << senal  << "). Cerrando sistema...\n";
     if (global_shell) {
         global_shell->stop();
     }
