@@ -27,7 +27,6 @@ public:
     // Destructor
     ~MemoryManager();
     
-    // Reserva memoria usando algoritmo First-Fit
     // Retorna la dirección de inicio del bloque asignado (0 si falla)
     size_t alloc(size_t size);
     

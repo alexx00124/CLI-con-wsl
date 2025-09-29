@@ -43,7 +43,7 @@ int ProcessScheduler::crear_proceso(const std::string& name, size_t memory_requi
     return pid;
 }
 
-// Inicia el hilo del scheduler
+// Inicia el hilo
 void ProcessScheduler::start_scheduler() {
     if (!scheduler_running.load()) {
         scheduler_running = true;

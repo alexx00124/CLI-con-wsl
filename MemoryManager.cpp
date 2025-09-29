@@ -59,7 +59,7 @@ bool MemoryManager::free(size_t start_addr) {
             std::cout << "[MEMORY] Liberados " << block.size << " bytes en dirección " 
                       << start_addr << "\n";
             
-            // Fusionar bloques libres 
+            // Fusionar bloques libres adyacentes
             merge_free_blocks();
             return true;
         }
