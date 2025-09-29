@@ -18,12 +18,12 @@ class MemoryManager {
 private:
     std::vector<Block> memory_blocks;  // Vector que simula la memoria
     size_t total_memory;               // Memoria total disponible
-    mutable std::mutex memory_mutex;   // Mutex para acceso thread-safe (mutable para const functions)
+    mutable std::mutex memory_mutex;   // mutex se utiliza para que valso hilos no dañe la memoria
 
 public:
     // Constructor: inicializa la memoria con un bloque libre grande
     MemoryManager(size_t total_size);
-    
+
     // Destructor
     ~MemoryManager();
     

@@ -18,9 +18,10 @@ int ProcessScheduler::crear_proceso(const std::string& name, size_t memory_requi
     std::lock_guard<std::mutex> lock(scheduler_mutex);
     
     int pid = next_pid++;
+    //guardando su nombre y la memoria que pide.
     auto process = std::make_shared<Process>(pid, name, memory_required);
     
-    // Intentar asignar memoria para el proceso
+    //mira si hay memoria disponible
     process->memory_address = memory_manager.alloc(memory_required);
     
     if (process->memory_address == 0) {
@@ -75,7 +76,7 @@ void ProcessScheduler::stop_scheduler() {
     }
 }
 
-// Función principal del scheduler - implementa algoritmo FCFS
+// Función principal
 void ProcessScheduler::scheduler_loop() {
     while (scheduler_running.load()) {
         std::unique_lock<std::mutex> lock(scheduler_mutex);
@@ -83,14 +84,14 @@ void ProcessScheduler::scheduler_loop() {
         // Limpiar procesos terminados
         cleanup_finished_processes();
         
-        // Esperar hasta que haya un proceso en la cola o se detenga el scheduler
+        // Esperar hasta que haya un proceso en la cola o se detenga 
         cv.wait(lock, [this] { 
             return !ready_queue.empty() || !scheduler_running.load(); 
         });
         
         if (!scheduler_running.load()) break;
         
-        // Ejecutar procesos de la cola (FCFS)
+        // Ejecutar procesos de la cola 
         while (!ready_queue.empty()) {
             auto process = ready_queue.front();
             ready_queue.pop();
@@ -103,12 +104,12 @@ void ProcessScheduler::scheduler_loop() {
         
         lock.unlock();
         
-        // Pequeña pausa para evitar uso intensivo de CPU
+        // Pequeña pausa para evitar errores
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
 
-// Ejecuta un proceso creando su hilo
+// Ejecuta un proceso y crea su hilo
 void ProcessScheduler::execute_process(std::shared_ptr<Process> process) {
     // Crear el hilo para el proceso
     process->thread_ptr = std::make_unique<std::thread>(
@@ -197,7 +198,6 @@ bool ProcessScheduler::terminate_process(int pid) {
         std::cout << "[SCHEDULER] Terminando proceso " << it->second->name 
                   << " (PID: " << pid << ")\n";
         
-        // Nota: En un OS real, aquí enviaríamos una señal al proceso
         // Para este prototipo, simplemente esperamos a que termine naturalmente
         if (it->second->thread_ptr && it->second->thread_ptr->joinable()) {
             it->second->thread_ptr->join();

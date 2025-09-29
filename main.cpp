@@ -25,7 +25,7 @@ int main() {
         std::signal(SIGTERM, signal_handler);
         
         // Inicializar componentes del sistema operativo
-        const size_t TOTAL_MEMORY = 8192; // 8KB de memoria simulada
+        const size_t TOTAL_MEMORY = 8192; // 8KB (1024 bytes)
         
         std::cout << "[MAIN] Creando gestor de memoria...\n";
         MemoryManager memory_manager(TOTAL_MEMORY);
@@ -43,7 +43,7 @@ int main() {
         std::cout << "[MAIN] Algoritmo de asignación de memoria: First-Fit\n";
         std::cout << "[MAIN] Algoritmo de planificación: FCFS (First-Come, First-Served)\n";
         
-        // Ejecutar el shell
+        // Ejecuta 
         shell.run();
         
         std::cout << "[MAIN] Sistema operativo terminado correctamente\n";
